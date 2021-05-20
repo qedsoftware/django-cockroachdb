@@ -20,7 +20,8 @@ class DatabaseFeatures(PostgresDatabaseFeatures):
 
     # There are limitations on having DDL statements in a transaction:
     # https://www.cockroachlabs.com/docs/stable/known-limitations.html#schema-changes-within-transactions
-    can_rollback_ddl = False
+    # [QED] Overriden to True, USE ONLY TOGETHER WITH `strict_ddl_atomicity`
+    can_rollback_ddl = True
 
     # Not supported: https://github.com/cockroachdb/cockroach/issues/17511
     create_test_procedure_without_params_sql = None
